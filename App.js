@@ -2,11 +2,11 @@
 var fs = require('fs');
 var exec = require('child_process').exec;
 
-//require('./MainFrame');
+require('./MainFrame');
 
 _stream = require('./Stream');
 _routes = require('./Routes');
-_updater = require('./Updater');
+//_updater = require('./Updater');
 //_socket = require('./Socket');
 
 GLOBAL.vlc;
@@ -208,7 +208,7 @@ var init = function(){
   socket.express = _routes;
   socket.server = _http.createServer(socket.express);
   socket.io = _socketio(socket.server),
-  socket.server.listen(80);
+  socket.server.listen(4000);
   socket.io.on('connection', function(socket_client){
     var client_ip = socket_client.request.connection.remoteAddress.replace('::ffff:', '');
 

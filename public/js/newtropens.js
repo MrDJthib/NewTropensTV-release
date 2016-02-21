@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-	var socket = io.connect('http://' + window.location.hostname);
+	var socket = io.connect('http://' + window.location.hostname + ":4000");
 	var torrents;
 	var date, day, h, m;
 	var isRemote = (window.location.pathname == '/remote');
