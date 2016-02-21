@@ -11,8 +11,8 @@ var settings = {
 	standalone : false,
 	config_file : './config/config.json',
 	DOMAIN: 'http://www.cpasbien.io',
-	json_url: 'https://raw.githubusercontent.com/MrDJthib/NewTropens-TV/master/package.json',
-	zip_url: 'https://github.com/MrDJthib/NewTropens-TV/archive/master.zip',
+	json_url: 'https://raw.githubusercontent.com/MrDJthib/NewTropensTV-release/master/package.json',
+	zip_url: 'https://github.com/MrDJthib/NewTropensTV-release/archive/master.zip',
 	dev_mode: false;
 };
 
