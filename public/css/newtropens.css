@@ -1,0 +1,145 @@
+body{
+	overflow: hidden
+}
+
+.bg{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.navigation{
+	top: 16px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+
+.controls-remote {
+	position: absolute;
+	top: 300px;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+
+#films{
+	position: absolute;
+	display: inline-block;
+	white-space: nowrap;
+	overflow-x: hidden;
+	width: 100%;
+	bottom: 0;
+	padding-bottom: 24px;
+	overflow: hidden;
+	background: rgba(255, 255, 255, 0.6);
+}
+
+#films h4{
+	margin: 0;
+	margin-bottom: 24px;
+	color: #666666;
+	opacity: 0.6;
+	margin-left: 16px;
+	margin-top: 16px;
+}
+
+#films .film{
+	display:inline-block;
+	height: 200px;
+	width: 134px;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	margin-left: 16px;
+	margin-right: 16px;
+	transition: all 500ms;
+}
+
+#remoteconfig .modal-content{
+	text-align: center;
+}
+
+#remoteconfig .modal-content a{
+	text-transform: none!important;
+}
+
+#media-player{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #000;
+}
+
+#media-video{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+#bleft{
+	margin-right: 27.75px;
+}
+
+#bright{
+	margin-left: 27.75px;
+}
+
+#bup{
+	margin-bottom: 27.75px;
+}
+
+#bdown{
+	margin-top: 27.75px;
+}
+
+img.background{
+	/* Set rules to fill background */
+  min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+  width: 110%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: -5%;
+  left: -5%;
+}
+
+h4.hours{
+	text-align: right;
+	padding-right: 16px;
+}
+
+.card{
+	-webkit-transition: all 0.5s ease;
+}
+
+.card-content{
+	max-height: 100px;
+}
+
+.card-content p{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-height: 50px;
+}
+
+.remote-select{
+	box-shadow : 0 22px 70px 4px rgba(0,0,0,0.56), 0 0 0 1px rgba(0, 0, 0, 0.3);
+	-webkit-transform:scale(1.10);
+}
+
+#imgLoading{
+	position: absolute;
+	left: 50%;
+	top: 50%;
+}

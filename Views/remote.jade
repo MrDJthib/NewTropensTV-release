@@ -1,0 +1,26 @@
+extends layout
+
+block content
+    .bg.teal
+        .navigation
+            a#bup.btn-floating.btn-large.waves-effect.waves-light.red(href="#")
+                i.fa.fa-chevron-up
+            br
+            a#bleft.btn-floating.btn-large.waves-effect.waves-light.red(href="#")
+                i.fa.fa-chevron-left
+            a#bok.btn-floating.btn-large.waves-effect.waves-light.yellow.black-text(href="#")
+                | OK
+            a#bright.btn-floating.btn-large.waves-effect.waves-light.red(href="#")
+                i.fa.fa-chevron-right
+            br
+            a#bdown.btn-floating.btn-large.waves-effect.waves-light.red(href="#")
+                i.fa.fa-chevron-down
+        .controls-remote
+            a#beject.btn-floating.btn-large.waves-effect.waves-light.red(href="#")
+                i.fa.fa-eject
+    #code.modal.bottom-sheet
+        .modal-content
+            h6.teal-text Configuration d'une nouvelle télécommande
+            .input-field
+                input#code_input.validate
+                label(for='code_input', data-error='wrong', data-success='right')

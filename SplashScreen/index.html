@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<script src="../public/js/jquery.min.js"></script>
+		
+	</head>
+	<body>
+	<style type="text/css">
+		body{
+			margin: 0;	
+		}
+		#preload{
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: #fff;
+			overflow: hidden;
+		}
+
+		#preload img{
+			position: absolute;
+			margin-left: calc(50% - 100px);
+			top: calc(50% - 100px);
+		}
+
+		#preload h1{
+			position: absolute;
+			margin-left: calc(50% - 61.5px);
+			top: calc(50% - 58px);
+			font-size: 100px;
+			margin-top: 0;
+			margin-bottom: 0;
+			font-family: "Trebuchet MS";
+		}
+
+		#preload .shadow{
+			opacity: 0.5;
+		}
+
+		iframe{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+
+	</style>
+
+		<script type="text/javascript">
+		$(document).ready(function(){
+			var img = $("#preload img");
+			var txt = $("#preload h1");
+			var shadow = $("#preload .shadow");
+
+			img.animate({left: '-=100px'}, 1000, function(){});
+			txt.animate({left: '+=100px'}, 1000, function(){
+				shadow.animate({fontSize: 4000, opacity: 0, left: '-=2000px', top: '-=2000px'}, 650, function(){
+					$('iframe').attr('src', 'http://localhost:3000');
+					$('iframe').on('load', function(){
+        				$("#preload").fadeOut( 5000, function() {});
+        				console.log('load the iframe');
+    				});
+
+				});
+			});
+		});
+		</script>
+		<iframe width="100%" height="100%" frameBorder="0"></iframe>
+		<div id="preload">
+			<h1>TV</h1>
+			<h1 class="shadow">TV</h1>
+			<img width="200" height="200" src="../public/images/logo.png">
+		</div>
+	</body>
+</html>
