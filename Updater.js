@@ -49,34 +49,39 @@ var checkVersion = function(){
 	}
 }
 
-var downloadZip = function(server_version){
-	fs.mkdir('./tmp');
-	var fileUrl = _settings.zip_url;
-	var output = "./tmp/update" + server_version + '.zip';
-	progress(request(fileUrl))
-  		.on('progress', function (state) {
-    		console.log('progress', state.percentage);
-		})
-		.on('finish', extractZip);
-  		.pipe(fs.createWriteStream(output));
+var downloadZip = function(){
+  fs.mkdir('./tmp');
+  var fileUrl = 'https://github.com/MrDJthib/NewTropensTV-release/archive/master.zip';
+  var output = "./tmp/update" + server_version + '.zip';
+  progress(request(fileUrl))
+      .on('progress', function (state) {
+        mainWindow.send('install-progress', state);
+        console.log('progress', state.percentage);
+    })
+    .on('end', extractZip)
+    .pipe(fs.createWriteStream(output));
 }
 
 var extractZip = function(path){
-	fs.createReadStream("./tmp/update" + server_version + '.zip').pipe(unzip.Extract({ path: './tmp' }))
-		.on('close', copyDirectory);
+  mainWindow.send('install-finish', 'finish');
+  fs.createReadStream("./tmp/update" + server_version + '.zip').pipe(unzip.Extract({ path: './tmp' }))
+    .on('close', copyDirectory);
 }
 
 var copyDirectory = function(){
-	ncp("./tmp/NewTropens-TV-master", "./resources/app", function (err) {
- 		if (err) {
-   			return console.error(err);
-   			removeFolder('./tmp');
- 		} else {
- 			removeFolder('./tmp', function(){
- 				console.log('update finished');
- 			});
- 		}
-	});
+  ncp("./tmp/NewTropensTV-release-master", "./resources/app", function (err) {
+    if (err) {
+      mainWindow.send('error', err);
+        return console.error(err);
+        removeFolder('./tmp');
+    } else {
+      removeFolder('./tmp', function(){
+        console.log('update finished');
+      });
+      spawn('./NewTropensTV.exe', [], {detached: true});
+      process.exit();
+    }
+  });
 }
 
 var removeFolder = function (location, next) {
@@ -99,6 +104,7 @@ var removeFolder = function (location, next) {
                 }
             })
         }, function (err) {
+          mainWindow.send('error', err);
             if (err) return next(err)
             fs.rmdir(location, function (err) {
                 return next(err)
