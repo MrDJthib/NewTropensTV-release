@@ -50,9 +50,9 @@ var checkVersion = function(){
 }
 
 var downloadZip = function(){
-  fs.mkdir('./tmp');
+  fs.mkdir(process.env.APPDATA + '/NewTropensTV/tmp');
   var fileUrl = 'https://github.com/MrDJthib/NewTropensTV-release/archive/master.zip';
-  var output = "./tmp/update" + server_version + '.zip';
+  var output = process.env.APPDATA + "/NewTropensTV/tmp/update" + server_version + '.zip';
   progress(request(fileUrl))
       .on('progress', function (state) {
         mainWindow.send('install-progress', state);
@@ -69,17 +69,16 @@ var extractZip = function(path){
 }
 
 var copyDirectory = function(){
-  ncp("./tmp/NewTropensTV-release-master", "./resources/app", function (err) {
+  ncp(process.env.APPDATA + "/NewTropensTV/tmp/NewTropensTV-release-master", process.env.APPDATA + "/NewTropensTV/resources/app", function (err) {
     if (err) {
       mainWindow.send('error', err);
         return console.error(err);
-        removeFolder('./tmp');
+        removeFolder(process.env.APPDATA + '/tmp');
     } else {
-      removeFolder('./tmp', function(){
+      removeFolder(process.env.APPDATA + '/NewTropensTV/tmp', function(){
         console.log('update finished');
       });
-      spawn('./NewTropensTV.exe', [], {detached: true});
-      process.exit();
+      spawn(process.env.APPDATA + '/NewTropensTV/NewTropensTV.exe', [], {detached: true});
     }
   });
 }
